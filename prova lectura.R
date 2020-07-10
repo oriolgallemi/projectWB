@@ -1,16 +1,17 @@
 
 library(readr)
+library(ggplot2)
 library(tidyverse)
 
 setwd("C:/Users/oriol.gallemi/Desktop/R datascience/projectWB")
 
 #data taken from https://data.worldbank.org/indicator/NY.GNP.PCAP.CD    fitxer mundial per capita (escollit) 
 
-dfFull<-read_csv("API_NY.GNP.PCAP.CD_DS2_en_csv_v2_1218027.csv", col_names = T, guess_max = 64, na=c("","NA"), quoted_na=T, quote =  "\"",
+dfFullIncome<-read_csv("API_NY.GNP.PCAP.CD_DS2_en_csv_v2_1218027.csv", col_names = T, guess_max = 64, na=c("","NA"), quoted_na=T, quote =  "\"",
                  skip = 4, progress=show_progress(), skip_empty_rows = T)
-str(dfFull)
-view(dfFull)
-summary(dfFull)
+str(dfFullIncome)
+view(dfFullIncome)
+summary(dfFullIncome)
 
 # dfFull <- read_lines("API_NY.GNP.PCAP.CD_DS2_en_csv_v2_1218027.csv", )
 # str(dfFull)
@@ -28,6 +29,14 @@ summary(dfFull)
 # vars <- vars[vars!="dfFull"]
 # rm(list=vars)
 # rm(vars)
+
+dfFullPop<-read_csv("API_SP.POP.TOTL_DS2_en_csv_v2_1217749.csv", col_names = T, guess_max = 66, na=c("","NA"), quoted_na=T, quote =  "\"",
+                       skip = 4, progress=show_progress(), skip_empty_rows = T)
+str(dfFullPop)
+view(dfFullPop)
+summary(dfFullPop)
+
+## ALERTA que hi ha files que no son paisos, sino REGIONS economiques, CAL ELIMINAR-LOS per al processat. Estan a les mateixes files als dos Tibbles
 
 
 
