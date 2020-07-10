@@ -38,6 +38,8 @@ summary(dfFullPop)
 
 ## ALERTA que hi ha files que no son paisos, sino REGIONS economiques, CAL ELIMINAR-LOS per al processat. Estan a les mateixes files als dos Tibbles
 
+title = 'Lorenz curve of AVG household income / world'
+
 
 
 
