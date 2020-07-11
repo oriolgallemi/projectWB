@@ -34,6 +34,7 @@ prepare.data <- function(Income, Population, Year) { ### segons any escollit bus
 }
 printable<-prepare.data(dfFullIncome, dfFullPop, 1991) ####ALERTA que algunes vars no son numeriques !!!! cal transformar
 # colnames(printable) <- c("CountryName", "AvgIncome", "Population") ****eliminar BLANK SPACES DELS NOMS
+#select (X, starts with(date)) ##pporblema si la funcion no accepta variables com a arguments ...
 
 str(printable)
 view(printable)
