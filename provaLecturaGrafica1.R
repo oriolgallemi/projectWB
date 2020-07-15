@@ -108,20 +108,7 @@ for (i in seq(1, nrow(input))) {
 
 
 ### Clean the data ####
-# The goal is to make sure that the data matches the definition of the variables
-# in the table
 
-# Unify codes for missing values
-carsDF[carsDF==""] <- NA
-sum(is.na(carsDF))
-
-# Remove duplicated or irrelevant information
-table(duplicated(carsDF$id))
-table(is.na(carsDF$number))
-
-# Improve data coding
-summary(carsDF$category)
-table(carsDF$category) 
 table(carsDF$category, useNA = "ifany")
 carsDF$category <- droplevels(carsDF$category)
 
@@ -165,11 +152,6 @@ carsDF$man[carsDF$man1=="FCA ITALY SPA"] <- "FIAT GROUP"
 carsDF$man[carsDF$man1=="FORD MOTOR COMPANY"] <- "FORD MOTOR COMPANY"
 carsDF$man[carsDF$man1=="AUTOMOBILE DACIA SA"] <- "DACIA"
 carsDF$man[carsDF$man1=="MAGYAR SUZUKI CORPORATION LTD"] <- "MAGYAR SUZUKI"
-
-# ... (2) analyze as is
-
-# ... (3) remove
-# carsDF <- carsDF[!carsDF$man=="OUT OF SCOPE",]
 
 # Simplify columns
 carsDF <- carsDF[,c("id","state","man", "variant","version",
