@@ -1,1 +1,10 @@
 NO TOCAR
+
+Tasques:
+
+
+fer shiny on slider = any seleccionat entre 1962 i 2018
+boto actualitzar actualitza plot
+nota 2: es poden repassar les regions purgades (OCDE, EU-28, MEA ...)
+
+

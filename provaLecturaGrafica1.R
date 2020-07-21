@@ -1,5 +1,6 @@
 
 library(readr)
+library(stats)
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
@@ -32,13 +33,26 @@ title = 'Lorenz curve of AVG household income / world'
 prepare.data <- function(Income, Population, Year) { ### segons any escollit busca els vectors a income i poblacio
   c(Country_name=select(Income,(1)) ,Yearincome=Income[,which(colnames(Income)==Year)], Yearpop=Population[, which(colnames(Population)==Year)])
 }
-printable<-prepare.data(dfFullIncome, dfFullPop, 1991) ####ALERTA que algunes vars no son numeriques !!!! cal transformar
-# colnames(printable) <- c("CountryName", "AvgIncome", "Population") ****eliminar BLANK SPACES DELS NOMS
-#select (X, starts with(date)) ##pporblema si la funcion no accepta variables com a arguments ...
 
+printable<-prepare.data(dfFullIncome, dfFullPop, 1991) ####ALERTA que algunes vars no son numeriques !!!! cal transformar
+printable<-as_tibble(printable)   ### RECICLATGE DE LA VARIABLE PRINTABLE
+colnames(printable)<-c("CountryName", "AvgIncome", "AvgPop" )
+# format(printable$AvgIncome, decimal.mark=".")    # DUBTO de si ja ho tinc en numeric o què passa, en principi és inocu
+# printable$AvgIncome <- as.numeric(as.character(printable$AvgIncome))
+# printable$AvgPop <- as.numeric(as.character(printable$AvgPop))
+
+# elimino files inutils (agrupacions de regions, paradisos fiscals remenuts)
+printable<-printable[-c(6, 7, 35, 60, 61, 62, 63, 64, 67, 72, 73, 97, 101, 102, 103, 104, 106, 109, 127, 133, 134, 135, 138, 139, 141, 160, 180,
+                        182, 190, 195, 196, 197, 214, 216, 217, 229, 230, 235, 237, 239, 240, 248, 258),]
 str(printable)
 view(printable)
-summary(printable) ####vector ready to plot
+summary(printable) # unsorted printable (bar chart)
+
+printables <- printable[order(printable$AvgIncome, na.last = NA),]  ## els [] son els apuntadors a files i order retorna apuntadors
+str(printables)
+view(printables)
+summary(printables) #### vector sorted ready to plot
+
 
 
 
